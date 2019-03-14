@@ -9,15 +9,15 @@ import 'rxjs/add/operator/map';
 export class HomePage {
   posts:any;
   constructor(public navCtrl: NavController,private http:Http) {
-setInterval(()=>{
-  this.sales();
-},1000);
+// setInterval(()=>{
+//   this.sales();
+// },1000);
   
-
+this.sales();
   }
  
   sales(){
-    this.http.get('http://127.0.0.1:8002/wapp/rest/view_lastdata').map(res => res.json()).subscribe(data => {
+    this.http.get('http://127.0.0.1:8001/wapp/rest/view_last_data').map(res => res.json()).subscribe(data => {
 
   this.posts=data;
 

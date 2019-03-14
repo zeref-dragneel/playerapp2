@@ -20,32 +20,38 @@ export class MygraphPage {
   @ViewChild('lineCanvas') lineCanvas;
   posts:any;
   lineChart: any;
+  arrayList:any;
   constructor(public navCtrl: NavController,private http:Http,public navParams: NavParams) {
-// setInterval(()=>{
-//   this.ionViewDidLoad();
-// },1000);
+setInterval(()=>{
+//   this.sales();
+this.ionViewDidLoad();
+},1000);
   // this.graphs();
   // this.sales();
+
   }
+
  ionViewDidLoad(){
 
-    this.http.get('http://127.0.0.1:8002/wapp/rest/view_data').map(res => res.json()).subscribe(data => {
+    this.http.get('http://127.0.0.1:8001/wapp/rest/view_last_5_data').map(res => res.json()).subscribe(data => {
 
   this.posts=data;
-  // console.log(this.posts);
-    });
-var person = [ {"sno": 1 , "val" : 2},{"sno": 2 , "val" : 4},{"sno": 3 , "val" : 6}] ;
-var myperson = JSON.stringify(person);
-// console.log(myperson);   
-console.log(JSON.parse(myperson));
-  
+//   console.log(this.posts[0].sno);
+  let sno =this.posts.map(person => person.sno); 
+  let val =this.posts.map(person => person.val); 
+//   console.log(sno); 
+
+
+    // });
+
+
     this.lineChart = new Chart(this.lineCanvas.nativeElement, {
 
       type: 'line',
       data: {
-          labels:[1,2,3],
+          labels:sno,
           datasets: [{
-              data:[1,2,3],
+              data:val,
               borderColor: "#f53d3d",
               fill: true,
               backgroundColor:"#f53d3d40"
@@ -64,9 +70,11 @@ console.log(JSON.parse(myperson));
   
   });
   
-  }
   
+});
 
+
+}
 
 
 }
