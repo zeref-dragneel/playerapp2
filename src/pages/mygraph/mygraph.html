@@ -3,11 +3,13 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>Home</ion-title>
+    <ion-title>Graphs
+    </ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
     <div *ngFor="let post of posts"><h1>{{ post.val }}</h1></div>
+  <canvas #lineCanvas></canvas>
   
 </ion-content>
